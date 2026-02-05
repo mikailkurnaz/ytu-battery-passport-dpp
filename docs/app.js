@@ -355,7 +355,7 @@ function statusFor(val) {
 
   function materialsHTML(d) {
     var mats = d.materials || [];
-    var out = "<h2>Malzeme Kompozisyonu</h2>";
+    var out = "<h2>Malzeme</h2>";
 
     out += '<div class="box"><div class="small">Yüzdeler prototip/demo amaçlıdır.</div></div>';
     out += '<div class="box" style="margin-top:12px;">';
