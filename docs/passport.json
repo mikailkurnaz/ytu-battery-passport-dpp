@@ -23,7 +23,7 @@
       "year": "2025",
       "country": "Fransa"
     },
-    "warranty": "Veri mevcut değil"
+    "warranty": "10 yıl (demo)"
   },
   "carbonFootprint": {
     "total": 77,
@@ -52,20 +52,21 @@
     { "name": "Diğer", "percentage": 8, "recyclable": false, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" }
   ],
   "performance": {
-    "energyDensity": "Prototip model - kapasite değişken",
+    "energyDensity": "52 kWh",
     "powerDensity": "Veri mevcut değil",
     "cycleLife": "Veri mevcut değil",
     "chargingTime": "Veri mevcut değil",
     "operatingTemp": "Veri mevcut değil",
     "stateOfHealth": "Yeni üretim - %100"
   },
-  "circularity": {
-    "repairability": "Veri mevcut değil",
-    "recyclability": "Veri mevcut",
-    "recycledContent": "Veri mevcut değil",
-    "dismantlingInfo": "Veri mevcut",
-    "secondLife": "Veri mevcut değil",
-    "safetyDataSheet": "Veri mevcut"
+ "circularity": {
+  "repairability": "Veri mevcut değil",
+  "recyclability": "Veri mevcut değil",
+  "recycledContent": "Veri mevcut değil",
+  "dismantlingInfo": "Veri mevcut değil",
+  "secondLife": "Veri mevcut değil",
+  "safetyDataSheet": "Veri mevcut değil"
+}
   },
   "compliance": {
     "regulations": [
