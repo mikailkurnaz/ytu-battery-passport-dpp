@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Battery Passport (Thesis Prototype)",
+  "type": "object",
+  "required": ["passport", "battery"],
+  "properties": {
+    "passport": {
+      "type": "object",
+      "required": ["id", "version", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" },
+        "status": { "type": "string", "enum": ["prototype", "production"] },
+        "lastUpdate": { "type": ["string", "null"] }
+      }
+    },
+    "battery": {
+      "type": "object",
+      "required": ["model", "batteryType", "chemistry", "manufacturing"],
+      "properties": {
+        "manufacturer": { "type": ["string", "null"] },
+        "model": { "type": "string" },
+        "batteryType": { "type": "string" },
+        "chemistry": {
+          "type": "object",
+          "required": ["code", "label"],
+          "properties": {
+            "code": { "type": "string" },
+            "label": { "type": "string" },
+            "description": { "type": ["string", "null"] }
+          }
+        },
+        "manufacturing": {
+          "type": "object",
+          "required": ["year", "country"],
+          "properties": {
+            "year": { "type": "integer" },
+            "country": { "type": "string" },
+            "countryName": { "type": ["string", "null"] }
+          }
+        }
+      }
+    }
+  }
+}
