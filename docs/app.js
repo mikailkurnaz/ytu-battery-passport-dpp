@@ -261,7 +261,6 @@ function statusFor(val) {
   // SOL TARAF
   '<div class="box">' +
   kv("Üretici", b.manufacturer, "blue") +
-  kv("Üretim Ülkesi", b.manufactureCountry, "amber") +
   kv("Üretim Yılı", b.manufactureDate, "purple") +
   kv("Üretim Yeri Adresi", "Veri mevcut değil", "orange") +
    "</div>" +
