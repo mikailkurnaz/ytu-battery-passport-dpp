@@ -264,17 +264,6 @@ function statusFor(val) {
       kv("Üretim Ülkesi", b.manufactureCountry, "amber") +
       kv("Nominal Kapasite", b.capacity, "pink") +
       "</div>" +
-      '<div class="box">' +
-      '<h3 style="display:flex;gap:8px;align-items:center;">' +
-      icon("check-circle") +
-      "Uyumluluk Durumu</h3>" +
-      '<div class="small" style="line-height:1.9;">' +
-      "• EU Battery Regulation 2023/1542<br/>" +
-      "• ESPR Requirements<br/>" +
-      "• Due Diligence Regulation<br/>" +
-      "• RoHS & REACH Compliant<br/>" +
-      "</div>" +
-      "</div>" +
       "</div>"
     );
   }
