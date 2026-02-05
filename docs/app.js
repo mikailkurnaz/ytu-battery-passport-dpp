@@ -489,7 +489,7 @@ function statusFor(val) {
       '<div class="box" style="background:transparent;border:none;padding:0;margin:0;">' +
       '<div style="display:grid;grid-template-columns:1fr;gap:12px;">' +
       infoCard("Onarılabilirlik Skoru", c.repairability, "warn") +
-      infoCard("Geri Dönüşüm Bilgisi", c.recyclability, "ok") +
+      infoCard("Geri Dönüşüm Bilgisi", c.recyclability, isMissing(c.recyclability) ? "warn" : "ok") +
       infoCard("Geri Dönüştürülmüş İçerik", c.recycledContent, "warn") +
       infoCard("İkinci Ömür Uygunluğu", c.secondLife, "warn") +
       "</div>" +
