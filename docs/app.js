@@ -1,12 +1,13 @@
 window.addEventListener("DOMContentLoaded", function () {
   var app = document.getElementById("app") || document.getElementById("root");
   if (!app) {
-    document.body.innerHTML = "<h2>#app bulunamadı</h2><p>index.html içine: &lt;div id='app'&gt;&lt;/div&gt; eklemelisin.</p>";
+    document.body.innerHTML =
+      "<h2>#app bulunamadı</h2><p>index.html içine: &lt;div id='app'&gt;&lt;/div&gt; eklemelisin.</p>";
     return;
   }
 
   function esc(x) {
-    var s = (x === null || x === undefined) ? "" : String(x);
+    var s = x === null || x === undefined ? "" : String(x);
     return s
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -16,17 +17,19 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function icon(name) {
-    return '<i data-lucide="' + name + '" style="width:18px;height:18px;"></i>';
+    return '<i data-lucide="' + name + '" harmonize style="width:18px;height:18px;"></i>';
   }
 
   function createIconsSafe() {
-    try { if (window.lucide && window.lucide.createIcons) window.lucide.createIcons(); } catch (e) {}
+    try {
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    } catch (e) {}
   }
 
   var state = {
     tab: "overview",
     view: "public",
-    data: null
+    data: null,
   };
 
   var TABS = [
@@ -35,12 +38,13 @@ window.addEventListener("DOMContentLoaded", function () {
     { id: "materials", label: "Malzeme Kompozisyonu", icon: "package" },
     { id: "performance", label: "Performans", icon: "zap" },
     { id: "circularity", label: "Döngüsel Ekonomi", icon: "recycle" },
-    { id: "compliance", label: "Uyumluluk", icon: "shield" }
+    { id: "compliance", label: "Uyumluluk", icon: "shield" },
   ];
 
   function allowedTabIds(view) {
     if (view === "public") return ["overview", "carbon", "performance", "circularity"];
-    if (view === "professional") return ["overview", "carbon", "materials", "performance", "circularity"];
+    if (view === "professional")
+      return ["overview", "carbon", "materials", "performance", "circularity"];
     return ["overview", "carbon", "materials", "performance", "circularity", "compliance"]; // denetleyici
   }
 
@@ -64,14 +68,14 @@ window.addEventListener("DOMContentLoaded", function () {
       capacity: "Prototip model - alanına göre değişken",
       chemistry: "NMC 811 (80% Ni, 10% Mn, 10% Co)",
       manufactureDate: "2025",
-      manufactureCountry: "Fransa"
+      manufactureCountry: "Fransa",
     },
     carbonFootprint: {
       total: 77,
       unit: "kgCO₂e/kWh",
       reference: "Aulanier et al., 2023",
       stages: { rawMaterial: 35, manufacturing: 28, transport: 8, endOfLife: 6 },
-      note: "Çekiş bataryası için özel hesaplama - kapasite bazında normalize edilmiştir"
+      note: "Çekiş bataryası için özel hesaplama - kapasite bazında normalize edilmiştir",
     },
     materials: [
       { name: "Nikel (Ni)", percentage: 42, recyclable: true, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" },
@@ -80,7 +84,7 @@ window.addEventListener("DOMContentLoaded", function () {
       { name: "Lityum (Li)", percentage: 7, recyclable: true, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" },
       { name: "Grafit", percentage: 15, recyclable: true, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" },
       { name: "Alüminyum", percentage: 12, recyclable: true, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" },
-      { name: "Diğer", percentage: 8, recyclable: false, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" }
+      { name: "Diğer", percentage: 8, recyclable: false, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" },
     ],
     performance: {
       energyDensity: "Prototip model - kapasite değişken",
@@ -88,7 +92,7 @@ window.addEventListener("DOMContentLoaded", function () {
       cycleLife: "Veri mevcut değil",
       chargingTime: "Veri mevcut değil",
       operatingTemp: "Veri mevcut değil",
-      stateOfHealth: "Yeni üretim - %100"
+      stateOfHealth: "Yeni üretim - %100",
     },
     circularity: {
       repairability: "Veri mevcut değil",
@@ -96,8 +100,8 @@ window.addEventListener("DOMContentLoaded", function () {
       recycledContent: "Veri mevcut değil",
       dismantlingInfo: "Veri mevcut",
       secondLife: "Veri mevcut değil",
-      safetyDataSheet: "Veri mevcut"
-    }
+      safetyDataSheet: "Veri mevcut",
+    },
   };
 
   function normalizeData(json) {
@@ -106,6 +110,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     try {
       if (json.passport && json.passport.id) d.batteryData.id = json.passport.id;
+
       if (json.battery) {
         if (json.battery.manufacturer) d.batteryData.manufacturer = json.battery.manufacturer;
         if (json.battery.model) d.batteryData.model = json.battery.model;
@@ -117,6 +122,7 @@ window.addEventListener("DOMContentLoaded", function () {
           if (json.battery.manufacturing.country) d.batteryData.manufactureCountry = json.battery.manufacturing.country;
         }
       }
+
       if (json.carbonFootprint) d.carbonFootprint = json.carbonFootprint;
       if (Array.isArray(json.materials)) d.materials = json.materials;
       if (json.performance) d.performance = json.performance;
@@ -130,44 +136,66 @@ window.addEventListener("DOMContentLoaded", function () {
     var b = d.batteryData;
 
     function viewBtn(id, text, ic) {
-      var active = (state.view === id);
+      var active = state.view === id;
       var style = active
         ? "background:#3b82f6;color:#fff;border:1px solid #3b82f6;"
         : "background:#0b1226;color:#cbd5e1;border:1px solid #1f2937;";
-      return '<button class="btn" data-view="' + id + '" style="' + style + 'padding:10px 12px;border-radius:14px;font-weight:900;">' +
-        icon(ic) + " " + esc(text) + "</button>";
+      return (
+        '<button class="btn" data-view="' +
+        id +
+        '" style="' +
+        style +
+        "padding:10px 12px;border-radius:14px;font-weight:900;display:flex;gap:8px;align-items:center;\">" +
+        icon(ic) +
+        " " +
+        esc(text) +
+        "</button>"
+      );
     }
 
     function mini(k, v, cls) {
-      var mono = (k === "Pasaport ID") ? "font-family:ui-monospace, monospace;" : "";
-      return '<div class="mini ' + (cls || "") + '"><p class="k">' + esc(k) + '</p><p class="v" style="' + mono + '">' + esc(v) + "</p></div>";
+      var mono = k === "Pasaport ID" ? "font-family:ui-monospace, monospace;" : "";
+      return (
+        '<div class="mini ' +
+        (cls || "") +
+        '"><p class="k">' +
+        esc(k) +
+        '</p><p class="v" style="' +
+        mono +
+        '">' +
+        esc(v) +
+        "</p></div>"
+      );
     }
 
     return (
       '<div class="card">' +
-        '<div class="header">' +
-          '<div class="brand">' +
-            '<div class="logo">' + icon("battery") + '</div>' +
-            '<div>' +
-              '<h1 class="title">Dijital Batarya Pasaportu</h1>' +
-              '<p class="subtitle">Tez Prototipi (EU 2023/1542 & ESPR)</p>' +
-              '<p class="small">Görünüm: <b>' + esc(viewLabel(state.view)) + '</b></p>' +
-            '</div>' +
-          '</div>' +
-          '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">' +
-            viewBtn("public", "Kamuya Açık", "globe") +
-            viewBtn("professional", "Profesyonel", "briefcase") +
-            viewBtn("controller", "Denetleyici Mekanizma", "shield") +
-          '</div>' +
-        '</div>' +
-
-        '<div class="grid4">' +
-          mini("Pasaport ID", b.id, "") +
-          mini("Batarya Türü", b.batteryType, "green") +
-          mini("Kimya", "NMC 811", "purple") +
-          mini("Üretim Ülkesi", b.manufactureCountry, "amber") +
-        '</div>' +
-      '</div>'
+      '<div class="header">' +
+      '<div class="brand">' +
+      '<div class="logo">' +
+      icon("battery") +
+      "</div>" +
+      "<div>" +
+      '<h1 class="title">Dijital Batarya Pasaportu</h1>' +
+      '<p class="subtitle">Tez Prototipi (EU 2023/1542 & ESPR)</p>' +
+      '<p class="small">Görünüm: <b>' +
+      esc(viewLabel(state.view)) +
+      "</b></p>" +
+      "</div>" +
+      "</div>" +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">' +
+      viewBtn("public", "Kamuya Açık", "globe") +
+      viewBtn("professional", "Profesyonel", "briefcase") +
+      viewBtn("controller", "Denetleyici Mekanizma", "shield") +
+      "</div>" +
+      "</div>" +
+      '<div class="grid4">' +
+      mini("Pasaport ID", b.id, "") +
+      mini("Batarya Türü", b.batteryType, "green") +
+      mini("Kimya", "NMC 811", "purple") +
+      mini("Üretim Ülkesi", b.manufactureCountry, "amber") +
+      "</div>" +
+      "</div>"
     );
   }
 
@@ -177,8 +205,16 @@ window.addEventListener("DOMContentLoaded", function () {
     for (var i = 0; i < TABS.length; i++) {
       var t = TABS[i];
       if (allowed.indexOf(t.id) === -1) continue;
-      out += '<button class="tab ' + (state.tab === t.id ? "active" : "") + '" data-tab="' + t.id + '">' +
-        icon(t.icon) + "<span>" + esc(t.label) + "</span></button>";
+      out +=
+        '<button class="tab ' +
+        (state.tab === t.id ? "active" : "") +
+        '" data-tab="' +
+        t.id +
+        '" style="display:flex;gap:8px;align-items:center;">' +
+        icon(t.icon) +
+        "<span>" +
+        esc(t.label) +
+        "</span></button>";
     }
     out += "</div></div>";
     return out;
@@ -194,31 +230,40 @@ window.addEventListener("DOMContentLoaded", function () {
       if (color === "amber") border = "#f59e0b";
       if (color === "pink") border = "#ec4899";
 
-      return '<div class="kv" style="border-left-color:' + border + ';">' +
-        '<div class="k">' + esc(label) + '</div>' +
-        '<div class="v">' + esc(value) + "</div></div>";
+      return (
+        '<div class="kv" style="border-left-color:' +
+        border +
+        ';">' +
+        '<div class="k">' +
+        esc(label) +
+        "</div>" +
+        '<div class="v">' +
+        esc(value) +
+        "</div></div>"
+      );
     }
 
     return (
       "<h2>Genel Bilgiler</h2>" +
       '<div class="row">' +
-        '<div class="box">' +
-          kv("Üretici", b.manufacturer, "blue") +
-          kv("Kimya Yapısı", b.chemistry, "green") +
-          kv("Üretim Yılı", b.manufactureDate, "purple") +
-          kv("Üretim Ülkesi", b.manufactureCountry, "amber") +
-          kv("Nominal Kapasite", b.capacity, "pink") +
-        "</div>" +
-
-        '<div class="box">' +
-          '<h3 style="display:flex;gap:8px;align-items:center;">' + icon("check-circle") + "Uyumluluk Durumu</h3>" +
-          '<div class="small" style="line-height:1.9;">' +
-            "• EU Battery Regulation 2023/1542<br/>" +
-            "• ESPR Requirements<br/>" +
-            "• Due Diligence Regulation<br/>" +
-            "• RoHS & REACH Compliant<br/>" +
-          "</div>" +
-        "</div>" +
+      '<div class="box">' +
+      kv("Üretici", b.manufacturer, "blue") +
+      kv("Kimya Yapısı", b.chemistry, "green") +
+      kv("Üretim Yılı", b.manufactureDate, "purple") +
+      kv("Üretim Ülkesi", b.manufactureCountry, "amber") +
+      kv("Nominal Kapasite", b.capacity, "pink") +
+      "</div>" +
+      '<div class="box">' +
+      '<h3 style="display:flex;gap:8px;align-items:center;">' +
+      icon("check-circle") +
+      "Uyumluluk Durumu</h3>" +
+      '<div class="small" style="line-height:1.9;">' +
+      "• EU Battery Regulation 2023/1542<br/>" +
+      "• ESPR Requirements<br/>" +
+      "• Due Diligence Regulation<br/>" +
+      "• RoHS & REACH Compliant<br/>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
@@ -231,48 +276,71 @@ window.addEventListener("DOMContentLoaded", function () {
       rawMaterial: "Hammadde Çıkarımı",
       manufacturing: "Üretim",
       transport: "Taşıma",
-      endOfLife: "Ömür Sonu"
+      endOfLife: "Ömür Sonu",
     };
 
     function row(key) {
       var val = Number(st[key]) || 0;
-      var pct = total > 0 ? (val / total * 100) : 0;
+      var pct = total > 0 ? (val / total) * 100 : 0;
       return (
         '<div style="margin-bottom:12px;">' +
-          '<div style="display:flex;justify-content:space-between;gap:10px;">' +
-            "<b>" + esc(names[key]) + "</b>" +
-            "<b>" + esc(val) + " " + esc(cf.unit) + " (" + pct.toFixed(1) + "%)</b>" +
-          "</div>" +
-          '<div class="barwrap"><div class="bar" style="width:' + pct + '%;"></div></div>' +
+        '<div style="display:flex;justify-content:space-between;gap:10px;">' +
+        "<b>" +
+        esc(names[key]) +
+        "</b>" +
+        "<b>" +
+        esc(val) +
+        " " +
+        esc(cf.unit) +
+        " (" +
+        pct.toFixed(1) +
+        "%)</b>" +
+        "</div>" +
+        '<div class="barwrap"><div class="bar" style="width:' +
+        pct +
+        '%;"></div></div>' +
         "</div>"
       );
     }
 
     return (
       '<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;">' +
-        "<h2>Karbon Ayak İzi</h2>" +
-        '<div style="text-align:right;">' +
-          '<div style="font-size:28px;font-weight:1000;color:#22c55e;">' + esc(cf.total) + " " + esc(cf.unit) + "</div>" +
-          '<div class="small">Kaynak: ' + esc(cf.reference) + "</div>" +
-        "</div>" +
+      "<h2>Karbon Ayak İzi</h2>" +
+      '<div style="text-align:right;">' +
+      '<div style="font-size:28px;font-weight:1000;color:#22c55e;">' +
+      esc(cf.total) +
+      " " +
+      esc(cf.unit) +
+      "</div>" +
+      '<div class="small">Kaynak: ' +
+      esc(cf.reference) +
+      "</div>" +
+      "</div>" +
       "</div>" +
       '<div class="box" style="margin-top:10px;">' +
-        '<span class="pill blue">' + icon("alert-circle") + " Önemli Not</span>" +
-        '<div class="muted" style="margin-top:8px;">' + esc(cf.note) + "</div>" +
+      '<span class="pill blue" style="display:inline-flex;gap:8px;align-items:center;">' +
+      icon("alert-circle") +
+      " Önemli Not</span>" +
+      '<div class="muted" style="margin-top:8px;">' +
+      esc(cf.note) +
+      "</div>" +
       "</div>" +
       '<div class="row" style="margin-top:12px;">' +
-        '<div class="box">' +
-          "<h3>Tahmini Yaşam Döngüsü Dağılımı</h3>" +
-          row("rawMaterial") + row("manufacturing") + row("transport") + row("endOfLife") +
-        "</div>" +
-        '<div class="box">' +
-          "<h3>Metodoloji (Özet)</h3>" +
-          '<div class="small" style="line-height:1.9;">' +
-            "• ISO 14067:2018<br/>" +
-            "• Cradle-to-gate<br/>" +
-            "• Literatür bazlı tahmin<br/>" +
-          "</div>" +
-        "</div>" +
+      '<div class="box">' +
+      "<h3>Tahmini Yaşam Döngüsü Dağılımı</h3>" +
+      row("rawMaterial") +
+      row("manufacturing") +
+      row("transport") +
+      row("endOfLife") +
+      "</div>" +
+      '<div class="box">' +
+      "<h3>Metodoloji (Özet)</h3>" +
+      '<div class="small" style="line-height:1.9;">' +
+      "• ISO 14067:2018<br/>" +
+      "• Cradle-to-gate<br/>" +
+      "• Literatür bazlı tahmin<br/>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
@@ -289,18 +357,31 @@ window.addEventListener("DOMContentLoaded", function () {
       var pct = Number(m.percentage) || 0;
       out +=
         '<div class="box" style="margin:0 0 10px;">' +
-          '<div class="mat">' +
-            '<div class="matL">' +
-              '<div class="badgePct">' + esc(pct) + "%</div>" +
-              "<div>" +
-                '<div style="font-weight:1000;">' + esc(m.name) + "</div>" +
-                '<div class="small">Kaynak: ' + esc(m.source || "Veri mevcut değil") + "</div>" +
-              "</div>" +
-            "</div>" +
-            (m.recyclable ? '<span class="pill green">' + icon("recycle") + " Geri Dönüştürülebilir</span>"
-                          : '<span class="pill">' + icon("alert-circle") + " Sınırlı</span>") +
-          "</div>" +
-          '<div class="barwrap"><div class="bar" style="width:' + pct + '%;background:linear-gradient(90deg,#60a5fa,#a855f7);"></div></div>' +
+        '<div class="mat">' +
+        '<div class="matL">' +
+        '<div class="badgePct">' +
+        esc(pct) +
+        "%</div>" +
+        "<div>" +
+        '<div style="font-weight:1000;">' +
+        esc(m.name) +
+        "</div>" +
+        '<div class="small">Kaynak: ' +
+        esc(m.source || "Veri mevcut değil") +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        (m.recyclable
+          ? '<span class="pill green" style="display:inline-flex;gap:8px;align-items:center;">' +
+            icon("recycle") +
+            " Geri Dönüştürülebilir</span>"
+          : '<span class="pill" style="display:inline-flex;gap:8px;align-items:center;">' +
+            icon("alert-circle") +
+            " Sınırlı</span>") +
+        "</div>" +
+        '<div class="barwrap"><div class="bar" style="width:' +
+        pct +
+        '%;background:linear-gradient(90deg,#60a5fa,#a855f7);"></div></div>' +
         "</div>";
     }
     out += "</div>";
@@ -315,14 +396,18 @@ window.addEventListener("DOMContentLoaded", function () {
       cycleLife: "Çevrim Ömrü",
       chargingTime: "Şarj Süresi",
       operatingTemp: "Çalışma Sıcaklığı",
-      stateOfHealth: "Sağlık Durumu (SoH)"
+      stateOfHealth: "Sağlık Durumu (SoH)",
     };
 
     function card(key) {
       return (
         '<div class="box" style="background:#0b1226;margin:0;">' +
-          '<div class="small">' + esc(labels[key]) + "</div>" +
-          '<div style="font-size:18px;font-weight:1000;margin-top:6px;">' + esc(p[key] || "Veri mevcut değil") + "</div>" +
+        '<div class="small">' +
+        esc(labels[key]) +
+        "</div>" +
+        '<div style="font-size:18px;font-weight:1000;margin-top:6px;">' +
+        esc(p[key] || "Veri mevcut değil") +
+        "</div>" +
         "</div>"
       );
     }
@@ -330,27 +415,96 @@ window.addEventListener("DOMContentLoaded", function () {
     return (
       "<h2>Performans</h2>" +
       '<div class="box">' +
-        '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">' +
-          card("energyDensity") + card("powerDensity") + card("cycleLife") +
-          card("chargingTime") + card("operatingTemp") + card("stateOfHealth") +
-        "</div>" +
+      '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">' +
+      card("energyDensity") +
+      card("powerDensity") +
+      card("cycleLife") +
+      card("chargingTime") +
+      card("operatingTemp") +
+      card("stateOfHealth") +
+      "</div>" +
       "</div>"
     );
   }
 
+  // ✅ İSTEDİĞİN YENİ DÖNGÜSEL EKONOMİ EKRANI
   function circularityHTML(d) {
     var c = d.circularity || {};
+
+    function statusPill(text) {
+      var t = String(text || "").toLowerCase();
+      var isOk = t.indexOf("mevcut") !== -1 && t.indexOf("değil") === -1;
+      var cls = isOk ? "green" : "amber";
+      var ic = isOk ? "check-circle" : "alert-circle";
+      return (
+        '<span class="pill ' +
+        cls +
+        '" style="display:inline-flex;gap:8px;align-items:center;">' +
+        icon(ic) +
+        " " +
+        esc(text || "Veri mevcut değil") +
+        "</span>"
+      );
+    }
+
+    function infoCard(title, value, type) {
+      var headerPill =
+        type === "ok"
+          ? '<span class="pill green" style="display:inline-flex;gap:8px;align-items:center;">' +
+            icon("check-circle") +
+            " " +
+            esc(title) +
+            "</span>"
+          : '<span class="pill amber" style="display:inline-flex;gap:8px;align-items:center;">' +
+            icon("alert-circle") +
+            " " +
+            esc(title) +
+            "</span>";
+
+      return (
+        '<div class="box" style="margin:0;">' +
+        headerPill +
+        '<div style="margin-top:12px;font-weight:1000;font-size:16px;">' +
+        esc(value || "Veri mevcut değil") +
+        "</div>" +
+        "</div>"
+      );
+    }
+
     return (
       "<h2>Döngüsel Ekonomi</h2>" +
       '<div class="row">' +
-        '<div class="box">' +
-          '<div class="pill amber">' + icon("alert-circle") + " Onarılabilirlik</div>" +
-          '<div style="margin-top:10px;font-weight:1000;">' + esc(c.repairability) + "</div>" +
-        "</div>" +
-        '<div class="box">' +
-          '<div class="pill green">' + icon("check-circle") + " Geri Dönüşüm</div>" +
-          '<div style="margin-top:10px;font-weight:1000;">' + esc(c.recyclability) + "</div>" +
-        "</div>" +
+      // sol taraf: 4 kutu
+      '<div class="box" style="background:transparent;border:none;padding:0;margin:0;">' +
+      '<div style="display:grid;grid-template-columns:1fr;gap:12px;">' +
+      infoCard("Onarılabilirlik Skoru", c.repairability, "warn") +
+      infoCard("Geri Dönüşüm Bilgisi", c.recyclability, "ok") +
+      infoCard("Geri Dönüştürülmüş İçerik", c.recycledContent, "warn") +
+      infoCard("İkinci Ömür Uygunluğu", c.secondLife, "warn") +
+      "</div>" +
+      "</div>" +
+      // sağ taraf: mevcut dökümanlar
+      '<div class="box">' +
+      '<h3 style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">' +
+      icon("file-text") +
+      "Mevcut Dökümanlar</h3>" +
+      '<div style="display:grid;gap:10px;">' +
+      '<div class="box" style="background:#0b1226;margin:0;">' +
+      '<div style="display:flex;gap:10px;align-items:flex-start;">' +
+      icon("check-circle") +
+      '<div><div style="font-weight:1000;">Söküm Talimatları</div>' +
+      '<div class="small">' + esc(c.dismantlingInfo || "Veri mevcut") + "</div></div>" +
+      "</div>" +
+      "</div>" +
+      '<div class="box" style="background:#0b1226;margin:0;">' +
+      '<div style="display:flex;gap:10px;align-items:flex-start;">' +
+      icon("check-circle") +
+      '<div><div style="font-weight:1000;">Güvenlik Veri Sayfası (SDS)</div>' +
+      '<div class="small">' + esc(c.safetyDataSheet || "Veri mevcut") + "</div></div>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
@@ -361,16 +515,24 @@ window.addEventListener("DOMContentLoaded", function () {
     function bigCard(iconName, title, subtitle) {
       return (
         '<div class="box" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);">' +
-          '<div style="display:flex;gap:10px;align-items:center;">' +
-            '<div style="width:44px;height:44px;border-radius:14px;background:#22c55e;display:flex;align-items:center;justify-content:center;">' +
-              '<span style="color:#fff;">' + icon(iconName) + "</span>" +
-            "</div>" +
-            "<div>" +
-              "<div style='font-weight:1000;'>" + esc(title) + "</div>" +
-              "<div class='small'>" + esc(subtitle) + "</div>" +
-            "</div>" +
-          "</div>" +
-          '<div style="margin-top:12px;"><span class="pill green">' + icon("check-circle") + " Uyumlu (Demo)</span></div>" +
+        '<div style="display:flex;gap:10px;align-items:center;">' +
+        '<div style="width:44px;height:44px;border-radius:14px;background:#22c55e;display:flex;align-items:center;justify-content:center;">' +
+        '<span style="color:#fff;">' +
+        icon(iconName) +
+        "</span>" +
+        "</div>" +
+        "<div>" +
+        "<div style='font-weight:1000;'>" +
+        esc(title) +
+        "</div>" +
+        "<div class='small'>" +
+        esc(subtitle) +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        '<div style="margin-top:12px;"><span class="pill green" style="display:inline-flex;gap:8px;align-items:center;">' +
+        icon("check-circle") +
+        " Uyumlu (Demo)</span></div>" +
         "</div>"
       );
     }
@@ -378,38 +540,42 @@ window.addEventListener("DOMContentLoaded", function () {
     function smallCard(iconName, title, subtitle, statusText) {
       return (
         '<div class="box" style="background:#0b1226;">' +
-          "<div style='display:flex;gap:10px;align-items:center;'>" +
-            "<div style='width:36px;height:36px;border-radius:12px;background:#111827;border:1px solid #1f2937;display:flex;align-items:center;justify-content:center;'>" +
-              icon(iconName) +
-            "</div>" +
-            "<div>" +
-              "<div style='font-weight:1000;'>" + esc(title) + "</div>" +
-              "<div class='small'>" + esc(subtitle) + "</div>" +
-            "</div>" +
-          "</div>" +
-          '<div style="margin-top:10px;"><span class="pill green">' + icon("check-circle") + " " + esc(statusText) + "</span></div>" +
+        "<div style='display:flex;gap:10px;align-items:center;'>" +
+        "<div style='width:36px;height:36px;border-radius:12px;background:#111827;border:1px solid #1f2937;display:flex;align-items:center;justify-content:center;'>" +
+        icon(iconName) +
+        "</div>" +
+        "<div>" +
+        "<div style='font-weight:1000;'>" +
+        esc(title) +
+        "</div>" +
+        "<div class='small'>" +
+        esc(subtitle) +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        '<div style="margin-top:10px;"><span class="pill green" style="display:inline-flex;gap:8px;align-items:center;">' +
+        icon("check-circle") +
+        " " +
+        esc(statusText) +
+        "</span></div>" +
         "</div>"
       );
     }
 
     return (
       "<h2>Düzenleyici Uyumluluk</h2>" +
-
-      // üstte 2 büyük kart
       '<div class="row">' +
-        bigCard("shield", "EU Battery Regulation", "2023/1542") +
-        bigCard("leaf", "ESPR", "Ecodesign Regulation") +
+      bigCard("shield", "EU Battery Regulation", "2023/1542") +
+      bigCard("leaf", "ESPR", "Ecodesign Regulation") +
       "</div>" +
-
-      // altta 5 küçük kart (isim listesi yok)
       '<div class="box" style="margin-top:12px;">' +
-        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">' +
-          smallCard("alert-triangle", "RoHS Uyumluluğu", "Tehlikeli madde kısıtlamaları", "Uyumlu (Demo)") +
-          smallCard("flask-conical", "REACH Uyumluluğu", "Kimyasal madde uyumu", "Uyumlu (Demo)") +
-          smallCard("badge-check", "CE İşaretlemesi", "Avrupa uygunluk beyanı", "Uyumlu (Demo)") +
-          smallCard("file-check", "Test Raporu", "Doküman durumu", "Mevcut (Demo)") +
-          smallCard("award", "Ürün Sertifikaları", "Doküman durumu", "Mevcut (Demo)") +
-        "</div>" +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">' +
+      smallCard("alert-triangle", "RoHS Uyumluluğu", "Tehlikeli madde kısıtlamaları", "Uyumlu (Demo)") +
+      smallCard("flask-conical", "REACH Uyumluluğu", "Kimyasal madde uyumu", "Uyumlu (Demo)") +
+      smallCard("badge-check", "CE İşaretlemesi", "Avrupa uygunluk beyanı", "Uyumlu (Demo)") +
+      smallCard("file-check", "Test Raporu", "Doküman durumu", "Mevcut (Demo)") +
+      smallCard("award", "Ürün Sertifikaları", "Doküman durumu", "Mevcut (Demo)") +
+      "</div>" +
       "</div>"
     );
   }
@@ -432,7 +598,9 @@ window.addEventListener("DOMContentLoaded", function () {
     app.innerHTML =
       headerHTML(d) +
       tabsHTML() +
-      '<div class="card content">' + contentHTML(d) + "</div>" +
+      '<div class="card content">' +
+      contentHTML(d) +
+      "</div>" +
       '<div class="footer small">Bu prototip tez çalışması kapsamında hazırlanmıştır.</div>';
 
     createIconsSafe();
@@ -440,7 +608,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function load() {
     fetch("./passport.json", { cache: "no-store" })
-      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
       .then(function (json) {
         state.data = normalizeData(json);
         render();
