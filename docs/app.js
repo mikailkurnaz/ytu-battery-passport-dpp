@@ -341,14 +341,6 @@ function statusFor(val) {
       row("transport") +
       row("endOfLife") +
       "</div>" +
-      '<div class="box">' +
-      "<h3>Metodoloji (Özet)</h3>" +
-      '<div class="small" style="line-height:1.9;">' +
-      "• ISO 14067:2018<br/>" +
-      "• Cradle-to-gate<br/>" +
-      "• Literatür bazlı tahmin<br/>" +
-      "</div>" +
-      "</div>" +
       "</div>"
     );
   }
