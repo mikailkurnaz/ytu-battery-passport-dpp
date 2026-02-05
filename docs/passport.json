@@ -9,7 +9,7 @@
     "manufacturer": "Veri mevcut değil",
     "model": "Çekiş Bataryası - NMC 811",
     "batteryType": "Çekiş bataryası (Traction Battery)",
-    "capacity": "Prototip model - alanına göre değişken",
+    "capacity": "52 kWh",
     "chemistry": {
       "code": "NMC 811",
       "label": "NMC 811 (80% Ni, 10% Mn, 10% Co)",
