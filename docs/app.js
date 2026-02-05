@@ -101,7 +101,6 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
   function normalizeData(json) {
-    // passport.json okunsa bile okunmasa bile bu demo çalışsın diye
     json = json || {};
     var d = JSON.parse(JSON.stringify(DEFAULT)); // kopya
 
@@ -356,22 +355,60 @@ window.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Uyumluluk: sadece Uyumlu (Demo)
+  // ✅ Uyumluluk: EU + ESPR + (RoHS, REACH, CE, Test Raporu, Ürün Sertifikaları)
+  // ✅ Test isimleri / sertifika isimleri görünmez
   function complianceHTML() {
+    function bigCard(iconName, title, subtitle) {
+      return (
+        '<div class="box" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);">' +
+          '<div style="display:flex;gap:10px;align-items:center;">' +
+            '<div style="width:44px;height:44px;border-radius:14px;background:#22c55e;display:flex;align-items:center;justify-content:center;">' +
+              '<span style="color:#fff;">' + icon(iconName) + "</span>" +
+            "</div>" +
+            "<div>" +
+              "<div style='font-weight:1000;'>" + esc(title) + "</div>" +
+              "<div class='small'>" + esc(subtitle) + "</div>" +
+            "</div>" +
+          "</div>" +
+          '<div style="margin-top:12px;"><span class="pill green">' + icon("check-circle") + " Uyumlu (Demo)</span></div>" +
+        "</div>"
+      );
+    }
+
+    function smallCard(iconName, title, subtitle, statusText) {
+      return (
+        '<div class="box" style="background:#0b1226;">' +
+          "<div style='display:flex;gap:10px;align-items:center;'>" +
+            "<div style='width:36px;height:36px;border-radius:12px;background:#111827;border:1px solid #1f2937;display:flex;align-items:center;justify-content:center;'>" +
+              icon(iconName) +
+            "</div>" +
+            "<div>" +
+              "<div style='font-weight:1000;'>" + esc(title) + "</div>" +
+              "<div class='small'>" + esc(subtitle) + "</div>" +
+            "</div>" +
+          "</div>" +
+          '<div style="margin-top:10px;"><span class="pill green">' + icon("check-circle") + " " + esc(statusText) + "</span></div>" +
+        "</div>"
+      );
+    }
+
     return (
-      "<h2>Uyumluluk</h2>" +
+      "<h2>Düzenleyici Uyumluluk</h2>" +
+
+      // üstte 2 büyük kart
       '<div class="row">' +
-        '<div class="box">' +
-          '<div style="display:flex;gap:10px;align-items:center;">' +
-            icon("shield") + "<div><b>EU Battery Regulation</b><div class='small'>2023/1542</div></div>" +
-          "</div>" +
-          '<div style="margin-top:12px;"><span class="pill green">' + icon("check-circle") + " Uyumlu (Demo)</span></div>" +
-        "</div>" +
-        '<div class="box">' +
-          '<div style="display:flex;gap:10px;align-items:center;">' +
-            icon("leaf") + "<div><b>ESPR</b><div class='small'>Ecodesign Regulation</div></div>" +
-          "</div>" +
-          '<div style="margin-top:12px;"><span class="pill green">' + icon("check-circle") + " Uyumlu (Demo)</span></div>" +
+        bigCard("shield", "EU Battery Regulation", "2023/1542") +
+        bigCard("leaf", "ESPR", "Ecodesign Regulation") +
+      "</div>" +
+
+      // altta 5 küçük kart (isim listesi yok)
+      '<div class="box" style="margin-top:12px;">' +
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">' +
+          smallCard("alert-triangle", "RoHS Uyumluluğu", "Tehlikeli madde kısıtlamaları", "Uyumlu (Demo)") +
+          smallCard("flask-conical", "REACH Uyumluluğu", "Kimyasal madde uyumu", "Uyumlu (Demo)") +
+          smallCard("badge-check", "CE İşaretlemesi", "Avrupa uygunluk beyanı", "Uyumlu (Demo)") +
+          smallCard("file-check", "Test Raporu", "Doküman durumu", "Mevcut (Demo)") +
+          smallCard("award", "Ürün Sertifikaları", "Doküman durumu", "Mevcut (Demo)") +
         "</div>" +
       "</div>"
     );
@@ -433,7 +470,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // başlat
   state.data = normalizeData(null);
   render();
   load();
