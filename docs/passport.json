@@ -1,0 +1,148 @@
+{
+  "passport": {
+    "id": "NMC-BAT-2025-FR-8105",
+    "version": "1.0",
+    "status": "prototype",
+    "lastUpdate": null
+  },
+  "battery": {
+    "manufacturer": null,
+    "model": "Çekiş Bataryası - NMC 811",
+    "batteryType": "Çekiş bataryası (Traction Battery)",
+    "capacity": {
+      "value": null,
+      "unit": "kWh",
+      "note": "Prototip model - alanına göre değişken"
+    },
+    "chemistry": {
+      "code": "NMC811",
+      "label": "NMC 811",
+      "description": "NMC 811 (80% Ni, 10% Mn, 10% Co)",
+      "compositionPercent": { "Ni": 80, "Mn": 10, "Co": 10 }
+    },
+    "manufacturing": {
+      "year": 2025,
+      "country": "FR",
+      "countryName": "Fransa"
+    },
+    "warranty": null
+  },
+  "carbonFootprint": {
+    "total": { "value": 77, "unit": "kgCO2e/kWh" },
+    "reference": {
+      "citation": "Aulanier et al., 2023",
+      "note": "Çekiş bataryası için literatür bazlı normalizasyon (kapasite bazında)."
+    },
+    "stages": {
+      "rawMaterial": 35,
+      "manufacturing": 28,
+      "transport": 8,
+      "endOfLife": 6
+    },
+    "method": {
+      "standard": "ISO 14067:2018",
+      "scope": "Cradle-to-gate",
+      "dataQuality": "Literatür bazlı tahmin",
+      "qualityLabel": "Orta (demo)",
+      "qualityNote": "Gerçek üretim verisi prototip aşamasında mevcut değildir."
+    }
+  },
+  "materials": [
+    { "name": "Nikel (Ni)", "percentage": 42, "recyclable": true, "source": null, "recycledContent": null },
+    { "name": "Mangan (Mn)", "percentage": 8, "recyclable": true, "source": null, "recycledContent": null },
+    { "name": "Kobalt (Co)", "percentage": 8, "recyclable": true, "source": null, "recycledContent": null },
+    { "name": "Lityum (Li)", "percentage": 7, "recyclable": true, "source": null, "recycledContent": null },
+    { "name": "Grafit", "percentage": 15, "recyclable": true, "source": null, "recycledContent": null },
+    { "name": "Alüminyum", "percentage": 12, "recyclable": true, "source": null, "recycledContent": null },
+    { "name": "Diğer", "percentage": 8, "recyclable": false, "source": null, "recycledContent": null }
+  ],
+  "performance": {
+    "energyDensity": "Prototip model - kapasite değişken",
+    "powerDensity": null,
+    "cycleLife": null,
+    "chargingTime": null,
+    "operatingTemp": null,
+    "stateOfHealth": "Yeni üretim - %100"
+  },
+  "tests": {
+    "safety": ["UN 38.3 Transport Test", "IEC 62133 Safety Test", "Thermal Runaway Test", "Vibration & Shock Test"],
+    "performance": ["Capacity Verification (±2%)", "Internal Resistance Test", "Fast Charging Capability", "Temperature Performance"]
+  },
+  "circularity": {
+    "repairability": null,
+    "recyclability": "Veri mevcut",
+    "recycledContent": null,
+    "dismantlingInfo": "Veri mevcut",
+    "secondLife": null,
+    "documents": [
+      { "title": "Söküm Talimatları", "note": "Detaylı demontaj prosedürleri mevcut" },
+      { "title": "Güvenlik Veri Sayfası (SDS)", "note": "SDS hazır" }
+    ],
+    "toImprove": [
+      { "title": "İkinci Hayat Planlaması", "note": "ESS vb. senaryolar için değerlendirme yapılacak" },
+      { "title": "Geri Dönüşüm Partnerleri", "note": "Sertifikalı tesislerle anlaşmalar kurulacak" },
+      { "title": "Onarılabilirlik Sertifikası", "note": "ESPR kriterlerine göre değerlendirme beklemede" }
+    ]
+  },
+  "dueDiligence": {
+    "items": [
+      { "title": "Tedarik Zinciri Şeffaflığı", "status": "Veri toplama aşamasında" },
+      { "title": "Çocuk İşçiliği Denetimi", "status": "Değerlendirme beklemede" },
+      { "title": "Conflict Minerals", "status": "Sertifikasyon süreci devam ediyor" },
+      { "title": "Çevresel Etki", "status": "Değerlendirme yapılacak" }
+    ]
+  },
+  "compliance": {
+    "highLevel": [
+      "EU Battery Regulation 2023/1542",
+      "ESPR Requirements",
+      "Due Diligence",
+      "RoHS & REACH (Demo)"
+    ],
+    "regulations": [
+      {
+        "title": "EU Battery Regulation",
+        "subtitle": "2023/1542",
+        "icon": "shield",
+        "color": "#22c55e",
+        "items": [
+          "Karbon ayak izi beyanı (Art. 7)",
+          "Geri dönüştürülmüş içerik (Art. 8) – veri beklemede",
+          "Performans & dayanıklılık (Art. 9-10)",
+          "Sökülebilirlik & değiştirilebilirlik (Art. 11)",
+          "Dijital batarya pasaportu (Art. 65)"
+        ]
+      },
+      {
+        "title": "ESPR",
+        "subtitle": "Ecodesign Regulation",
+        "icon": "leaf",
+        "color": "#3b82f6",
+        "items": [
+          "Ürün çevre ayak izi (PEF)",
+          "Malzeme verimliliği gereksinimleri",
+          "Dijital ürün pasaportu (DPP)",
+          "Döngüsel performans göstergeleri",
+          "Onarım & yedek parça gereksinimleri"
+        ]
+      }
+    ],
+    "quickChecks": [
+      { "title": "RoHS Uyumluluğu", "note": "Tehlikeli madde kısıtlamaları", "status": "Uyumlu (Demo)" },
+      { "title": "REACH Compliance", "note": "Kimyasal madde kaydı", "status": "Kayıtlı (Demo)" },
+      { "title": "CE İşaretlemesi", "note": "Uygunluk beyanı", "status": "Onaylı (Demo)" }
+    ],
+    "certificates": [
+      "ISO 9001:2015 - Kalite Yönetimi",
+      "ISO 14001:2015 - Çevre Yönetimi",
+      "ISO 45001:2018 - İş Sağlığı & Güvenliği",
+      "UL 2580 - Batarya Güvenliği (Demo)"
+    ],
+    "supplyChain": [
+      "RMI Conflict-Free Smelter Program (Demo)",
+      "Responsible Cobalt Initiative (RCI) (Demo)",
+      "Global Battery Alliance Passport (Demo)",
+      "Son Denetim: Aralık 2024 (Demo)"
+    ]
+  }
+}
