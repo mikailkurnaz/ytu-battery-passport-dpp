@@ -23,70 +23,85 @@
       "year": "2025",
       "country": "Fransa"
     },
-    "warranty": "10 yıl (demo)"
+    "warranty": "Veri mevcut değil"
   },
   "carbonFootprint": {
     "total": 77,
-    "unit": "kgCO₂e/kWh",
+    "unit": "kgCO2e/kWh",
     "reference": "Aulanier et al., 2023",
-    "dataAvailable": true,
-    "methodology": {
-      "standard": "ISO 14067:2018",
-      "scope": "Cradle-to-gate"
-    },
     "stages": {
       "rawMaterial": 35,
       "manufacturing": 28,
       "transport": 8,
       "endOfLife": 6
     },
-    "note": "Çekiş bataryası için literatür bazlı demo değer (prototip)."
+    "note": "Çekiş bataryası için literatür bazlı demo değer (prototip) - kapasite bazında normalize edilmiştir"
   },
   "materials": [
-    { "name": "Nikel (Ni)", "percentage": 42, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-    { "name": "Mangan (Mn)", "percentage": 8, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-    { "name": "Kobalt (Co)", "percentage": 8, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-    { "name": "Lityum (Li)", "percentage": 7, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-    { "name": "Grafit", "percentage": 15, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-    { "name": "Alüminyum", "percentage": 12, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-    { "name": "Diğer", "percentage": 8, "recyclable": false, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" }
+    {
+      "name": "Nikel (Ni)",
+      "percentage": 42,
+      "recyclable": true,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    },
+    {
+      "name": "Mangan (Mn)",
+      "percentage": 8,
+      "recyclable": true,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    },
+    {
+      "name": "Kobalt (Co)",
+      "percentage": 8,
+      "recyclable": true,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    },
+    {
+      "name": "Lityum (Li)",
+      "percentage": 7,
+      "recyclable": true,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    },
+    {
+      "name": "Grafit",
+      "percentage": 15,
+      "recyclable": true,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    },
+    {
+      "name": "Alüminyum",
+      "percentage": 12,
+      "recyclable": true,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    },
+    {
+      "name": "Diğer",
+      "percentage": 8,
+      "recyclable": false,
+      "source": "Veri mevcut değil",
+      "recycledContent": "Veri mevcut değil"
+    }
   ],
   "performance": {
-    "energyDensity": "52 kWh",
+    "energyDensity": "Veri mevcut değil",
     "powerDensity": "Veri mevcut değil",
     "cycleLife": "Veri mevcut değil",
     "chargingTime": "Veri mevcut değil",
     "operatingTemp": "Veri mevcut değil",
-    "stateOfHealth": "Yeni üretim - %100"
+    "stateOfHealth": "Veri mevcut değil"
   },
- "circularity": {
-  "repairability": "Veri mevcut değil",
-  "recyclability": "Veri mevcut değil",
-  "recycledContent": "Veri mevcut değil",
-  "dismantlingInfo": "Veri mevcut değil",
-  "secondLife": "Veri mevcut değil",
-  "safetyDataSheet": "Veri mevcut değil"
-}
-  },
-  "compliance": {
-    "regulations": [
-      { "id": "EU_2023_1542", "title": "EU Battery Regulation", "subtitle": "2023/1542", "status": "compliant_demo", "icon": "shield", "color": "#22c55e" },
-      { "id": "ESPR", "title": "ESPR", "subtitle": "Ecodesign (DPP yaklaşımı)", "status": "compliant_demo", "icon": "leaf", "color": "#3b82f6" }
-    ],
-    "other": {
-      "rohs": "Uyumlu (Demo)",
-      "reach": "Uyumlu (Demo)",
-      "ce": "Uyumlu (Demo)"
-    },
-    "notes": "Tez prototipinde uyumluluk gösterimi özet (demo) olarak sunulmuştur."
-  },
-  "humanReadable": {
-    "title": "Dijital Batarya Pasaportu (Tez Prototipi)",
-    "subtitle": "NMC 811 çekiş bataryası için örnek gösterim",
-    "highlights": [
-      "Karbon ayak izi: literatür bazlı demo değer",
-      "Malzeme kompozisyonu: tipik NMC 811 dağılımı",
-      "Uyumluluk: Uyumlu (Demo)"
-    ]
+  "circularity": {
+    "repairability": "Veri mevcut değil",
+    "recyclability": "Veri mevcut değil",
+    "recycledContent": "Veri mevcut değil",
+    "dismantlingInfo": "Veri mevcut değil",
+    "secondLife": "Veri mevcut değil",
+    "safetyDataSheet": "Veri mevcut değil"
   }
 }
