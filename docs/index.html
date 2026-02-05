@@ -5,234 +5,298 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dijital Batarya Pasaportu</title>
 
-  <!-- Icons (lucide) -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- QR -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
   <style>
     :root{
-      --bg1:#f8fafc; --bg2:#eff6ff;
-      --card:#ffffff; --text:#111827; --muted:#6b7280;
-      --blue:#3b82f6; --green:#22c55e; --amber:#f59e0b; --purple:#8b5cf6; --orange:#f97316;
-      --shadow: 0 18px 50px rgba(0,0,0,.10);
-      --shadow2: 0 10px 26px rgba(0,0,0,.10);
-      --radius: 18px;
+      --bg1:#f8fafc;
+      --bg2:#eef2ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --blue:#3b82f6;
+      --green:#22c55e;
+      --amber:#f59e0b;
+      --purple:#a855f7;
+      --shadow: 0 12px 30px rgba(2,6,23,.08);
+      --r12: 12px;
+      --r16: 16px;
+      --r20: 20px;
     }
+
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       background: linear-gradient(135deg, var(--bg1), var(--bg2));
       padding: 22px;
     }
-    .wrap{ max-width: 1100px; margin: 0 auto; }
-    .card{
-      background:var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      margin-bottom: 16px;
+    a{ color: var(--blue); }
+
+    .container{
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .row{ display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r20);
+      box-shadow: var(--shadow);
+    }
+
+    .header{
+      padding: 24px;
+      display:flex;
+      gap:16px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
     .brand{
-      display:flex; gap:14px; align-items:center;
+      display:flex;
+      gap:14px;
+      align-items:center;
     }
     .logo{
-      width:56px; height:56px; border-radius:14px;
-      background: linear-gradient(135deg, #4ade80, #3b82f6);
-      display:flex; align-items:center; justify-content:center;
-      color:white;
+      width:54px;height:54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #34d399, #3b82f6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      flex:none;
     }
-    h1{ margin:0; font-size: 26px; }
-    .sub{ color:var(--muted); margin-top:6px; font-size: 13px; }
+    .title{
+      margin:0;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -.2px;
+    }
+    .subtitle{
+      margin:4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
     .btn{
-      border:0; background: var(--blue); color:#fff;
-      padding:10px 14px; border-radius: 12px;
-      cursor:pointer; display:flex; gap:8px; align-items:center;
-      box-shadow: var(--shadow2);
+      border:0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: var(--blue);
+      color:#fff;
+      cursor:pointer;
+      font-weight: 700;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      box-shadow: 0 8px 18px rgba(59,130,246,.25);
     }
-    .btn:active{ transform: translateY(1px); }
+    .btn:hover{ filter:brightness(.96); }
 
-    .grid4{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px; }
-    .mini{
-      border-radius: 14px; padding: 12px;
-      background: #f8fafc;
-      border: 1px solid #eef2f7;
-      min-height: 72px;
+    .grid4{
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      padding: 0 24px 18px;
     }
-    .mini .k{ font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-    .mini .v{ font-size: 13px; font-weight: 700; }
-    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
-
-    @media (max-width: 900px){
-      .grid4{ grid-template-columns: repeat(2, 1fr); }
+    @media (max-width:900px){
+      .grid4{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-    @media (max-width: 520px){
+    @media (max-width:520px){
       .grid4{ grid-template-columns: 1fr; }
     }
 
-    /* Tabs */
-    .tabsCard{ background:#fff; border-radius: 16px; box-shadow: var(--shadow2); padding: 10px; margin-bottom: 16px; overflow:auto; }
-    .tabs{ display:flex; gap: 8px; min-width:max-content; }
-    .tab{
-      border:0; background: transparent;
-      padding: 10px 12px; border-radius: 14px;
-      cursor:pointer; display:flex; gap:8px; align-items:center;
-      color:#4b5563;
+    .mini{
+      border-radius: var(--r12);
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
     }
-    .tab.active{ background: var(--blue); color:white; }
-    .tab span{ font-size: 13px; font-weight: 700; }
+    .mini.green{ background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+    .mini.purple{ background: linear-gradient(135deg, #faf5ff, #ede9fe); }
+    .mini.amber{ background: linear-gradient(135deg, #fffbeb, #fef3c7); }
 
-    /* Sections */
-    .title2{ font-size: 20px; margin: 0 0 14px 0; }
-    .two{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 900px){ .two{ grid-template-columns: 1fr; } }
+    .mini .k{ font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .mini .v{ font-weight: 900; font-size: 13px; }
 
-    .line{
-      padding-left: 12px; border-left: 4px solid var(--blue);
-      margin-bottom: 12px;
-    }
-    .line.green{ border-left-color: var(--green); }
-    .line.purple{ border-left-color: var(--purple); }
-    .line.orange{ border-left-color: var(--orange); }
-    .line.amber{ border-left-color: var(--amber); }
-    .line .k{ font-size:12px; color:var(--muted); }
-    .line .v{ font-weight: 800; margin-top: 4px; }
-
-    .boxSoft{
-      border-radius: 16px;
-      background: linear-gradient(135deg, #ecfdf5, #eff6ff);
-      padding: 16px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .warn{
-      border-radius: 16px;
-      background:#fffbeb;
-      border:1px solid #fde68a;
-      padding: 16px;
-    }
-
-    .listDot{ margin: 10px 0 0 0; padding: 0; list-style:none; }
-    .listDot li{ display:flex; gap:10px; align-items:center; margin:8px 0; font-size: 13px; }
-    .dot{ width:8px; height:8px; border-radius:999px; background: var(--green); }
-
-    .ok{ display:flex; gap:8px; align-items:center; font-size: 13px; margin:6px 0; }
-    .ok .tagOk{ color:#16a34a; font-weight:800; }
-    .ok .tagWarn{ color:#d97706; font-weight:800; }
-
-    /* Progress */
-    .pRow{ margin: 12px 0; }
-    .pTop{ display:flex; justify-content:space-between; gap:10px; font-size: 13px; }
-    .bar{ width:100%; height: 10px; border-radius: 999px; background:#e5e7eb; overflow:hidden; margin-top: 6px; }
-    .fill{ height: 10px; border-radius: 999px; background: linear-gradient(90deg, #4ade80, #16a34a); }
-
-    /* Materials */
-    .matCard{
-      border:1px solid #e5e7eb; border-radius: 14px; padding: 14px;
-      background:#fff;
-    }
-    .matHead{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-    .badgePct{
-      width:48px; height:48px; border-radius: 14px;
-      background: linear-gradient(135deg, #60a5fa, #a78bfa);
-      color:white; display:flex; align-items:center; justify-content:center;
-      font-weight: 900;
-    }
-    .pill{
-      display:inline-flex; gap:8px; align-items:center;
-      padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
-    }
-    .pill.green{ background:#dcfce7; color:#166534; }
-    .pill.gray{ background:#f3f4f6; color:#374151; }
-
-    /* QR area */
-    .qrWrap{
+    .tabs{
       margin-top: 14px;
-      background:#f9fafb;
-      border:1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 14px;
-      text-align:center;
-      display:none;
-    }
-    .qrBox{
-      display:inline-block;
-      background:#fff;
-      padding: 10px;
-      border-radius: 14px;
-      box-shadow: var(--shadow2);
-    }
-    .small{ color:var(--muted); font-size: 12px; }
-
-    /* JSON view */
-    pre{
-      margin:0;
-      background:#0b1220;
-      color:#dbeafe;
-      padding: 14px;
-      border-radius: 14px;
+      padding: 8px;
+      border-radius: var(--r16);
+      border: 1px solid var(--line);
+      background: var(--card);
+      display:flex;
+      gap:8px;
       overflow:auto;
+      box-shadow: 0 10px 24px rgba(2,6,23,.05);
+    }
+
+    .tab{
+      border:0;
+      background: transparent;
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color: #334155;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .tab:hover{ background:#f1f5f9; }
+    .tab.active{
+      background: var(--blue);
+      color:#fff;
+      box-shadow: 0 8px 18px rgba(59,130,246,.25);
+    }
+
+    .content{
+      margin-top: 14px;
+      padding: 22px;
+    }
+
+    h2{
+      margin: 0 0 14px;
+      font-size: 22px;
+      font-weight: 1000;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width:900px){ .row{ grid-template-columns: 1fr; } }
+
+    .box{
+      border: 1px solid var(--line);
+      border-radius: var(--r16);
+      padding: 16px;
+      background: #fff;
+    }
+
+    .kv{
+      border-left: 4px solid var(--blue);
+      padding-left: 12px;
+      margin: 10px 0;
+    }
+    .kv.green{ border-left-color: var(--green); }
+    .kv.purple{ border-left-color: var(--purple); }
+    .kv.amber{ border-left-color: var(--amber); }
+    .kv .k{ font-size: 12px; color: var(--muted); }
+    .kv .v{ font-weight: 900; margin-top: 2px; }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 900;
       font-size: 12px;
-      line-height: 1.4;
+      border:1px solid var(--line);
+      background:#f8fafc;
+    }
+    .pill.green{ background:#ecfdf5; border-color:#bbf7d0; color:#166534; }
+    .pill.amber{ background:#fffbeb; border-color:#fde68a; color:#92400e; }
+    .pill.blue{ background:#eff6ff; border-color:#bfdbfe; color:#1e3a8a; }
+
+    .muted{ color: var(--muted); font-size: 13px; }
+    .small{ font-size: 12px; color: var(--muted); }
+
+    .barwrap{
+      width:100%;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow:hidden;
+      border:1px solid #e5e7eb;
+    }
+    .bar{
+      height: 10px;
+      width: 0%;
+      background: linear-gradient(90deg, #34d399, #16a34a);
+    }
+
+    .list{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mat{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items:center;
+    }
+    .matL{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
+    .badgePct{
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 1000;
+      color:#fff;
+      background: linear-gradient(135deg, #60a5fa, #a855f7);
+      flex:none;
     }
 
     .footer{
       text-align:center;
-      color:var(--muted);
-      font-size: 12px;
-      margin-top: 10px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
     }
-    a{ color: var(--blue); text-decoration:none; font-weight:700; }
+
+    .qrBox{
+      margin: 0 24px 18px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      border-radius: var(--r16);
+      padding: 14px;
+      text-align:center;
+    }
+    .qrInner{
+      display:inline-block;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      box-shadow: 0 10px 24px rgba(2,6,23,.06);
+    }
+    .qrFake{
+      width: 132px;
+      height: 132px;
+      border-radius: 10px;
+      background: #0b1220;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 11px;
+      line-height: 1.25;
+      font-weight: 900;
+      text-align:center;
+      padding: 10px;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
+  <div class="container" id="app"></div>
 
-    <!-- Header -->
-    <div class="card">
-      <div class="row">
-        <div class="brand">
-          <div class="logo"><i data-lucide="battery"></i></div>
-          <div>
-            <h1>Dijital Batarya Pasaportu</h1>
-            <div class="sub">EU Battery Regulation (2023/1542) & ESPR uyumlu – Tez Prototipi</div>
-          </div>
-        </div>
-
-        <button id="qrBtn" class="btn">
-          <i data-lucide="globe"></i>
-          QR Kod
-        </button>
-      </div>
-
-      <div id="qrArea" class="qrWrap">
-        <div class="qrBox">
-          <div id="qrcode"></div>
-        </div>
-        <div class="small" style="margin-top:8px;">
-          QR, bu sayfanın ve JSON verisinin bağlantısını içerir.
-        </div>
-      </div>
-
-      <div class="grid4" id="topCards"></div>
-    </div>
-
-    <!-- Tabs -->
-    <div class="tabsCard">
-      <div class="tabs" id="tabs"></div>
-    </div>
-
-    <!-- Content -->
-    <div class="card" id="content"></div>
-
-    <div class="footer" id="footer"></div>
-  </div>
-
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="./app.js"></script>
 </body>
 </html>
