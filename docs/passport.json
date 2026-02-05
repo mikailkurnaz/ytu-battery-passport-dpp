@@ -8,7 +8,7 @@
   "battery": {
     "manufacturer": "Veri mevcut değil",
     "model": "Çekiş Bataryası - NMC 811",
-    "batteryType": "Çekiş bataryası (Traction Battery)",
+    "batteryType": "Lityum İyon Çekiş Bataryası ",
     "capacity": "52 kWh",
     "chemistry": {
       "code": "NMC 811",
