@@ -61,8 +61,10 @@
       total: 77,
       unit: "kgCO₂e/kWh",
       reference: "Aulanier et al., 2023",
-      stages: { rawMaterial: 35, manufacturing: 28, transport: 8, endOfLife: 6 },
-      note: "Çekiş bataryası için literatür bazlı demo değer (prototip).",
+      stages:,
+      responsibleSourcingReport: "Veri mevcut değil",
+      recycledContentShare: "Veri mevcut değil",
+      renewableContentShare: "Veri mevcut değil"
     },
     materials: [
       { name: "Nikel (Ni)", percentage: 42, source: "Veri mevcut değil", recycledContent: "Veri mevcut değil" },
