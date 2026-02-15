@@ -388,9 +388,9 @@
         <div class="box">${kv("Performans Değerleri", dy.performanceRecords)}</div>
         <div class="box">${kv("Sağlık Durumu (SoH)", dy.soh)}</div>
         <div class="box">${kv("Şarj Durumu (SoC)", dy.soc)}</div>
-        <div class="box">${kv('Pil Statüsü (orijinal / repurposed / yeniden kullanılan / yeniden üretilmiş / atık)', dy.batteryStatus)}</div>
+        <div class="box">${kv("Pil Statüsü", dy.batteryStatus)}</div>
         <div class="box">${kv("Kullanım Verileri", dy.usageData)}</div>
-        <div class="box">${kv("Olumsuz Olaylar (Kazalar vb.)", dy.incidents)}</div>
+        <div class="box">${kv("Olumsuz Olaylar", dy.incidents)}</div>
         <div class="box">${kv("Sıcaklık Maruziyeti", dy.temperatureExposure)}</div>
       </div>
       <div class="small" style="margin-top:10px;">
