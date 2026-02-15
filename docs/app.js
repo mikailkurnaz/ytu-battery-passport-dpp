@@ -255,59 +255,25 @@
   }
 
   function renderCarbon(d) {
-    const c = d.carbonFootprint;
-    const total = Number(c.total || 0) || 0;
-    const stages = c.stages || {};
-    const stageNames = {
-      rawMaterial: "Hammadde",
-      manufacturing: "Üretim",
-      transport: "Taşıma",
-      endOfLife: "Ömür Sonu",
-    };
+  var c = (d && d.carbonFootprint) ? d.carbonFootprint : {};
 
-    const bars = Object.keys(stageNames).map((k) => {
-      const val = Number(stages[k] || 0);
-      const pct = total ? Math.round((val / total) * 100) : 0;
-      return `
-        <div class="box">
-          <div style="display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;">
-            <div style="font-weight:900;">${stageNames[k]}</div>
-            <div class="small">${escapeHtml(val)} ${escapeHtml(c.unit)} (${pct}%)</div>
-          </div>
-          <div class="bar"><div style="width:${pct}%"></div></div>
-        </div>`;
-    }).join("");
-
-    // İSTEDİĞİN: metodoloji kısmı yok
-    return `
-      <h2>Karbon Ayak İzi</h2>
-      <div class="box">
-        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div>
-            <div class="pill ${pillStatusClass(c.total)}">${icon("leaf")} Toplam</div>
-            <div style="font-size:28px;font-weight:1000;">${escapeHtml(c.total)} ${escapeHtml(c.unit)}</div>
-          </div>
-          <div class="small" style="max-width:420px;">
-            Kaynak: ${escapeHtml(c.reference)}<br/>
-            ${escapeHtml(c.note)}
-          </div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-top:12px;">
-        <div class="box">
-          <h3>Yaşam Döngüsü Dağılımı</h3>
-          <div style="display:grid;gap:12px;">${bars}</div>
-        </div>
-        <div class="box">
-          <h3>Not</h3>
-          <div class="small">
-            Bu değerler demo amaçlıdır. Gerçek üretim verisi ile güncellenecektir.
-          </div>
-        </div>
-      </div>
-    `;
+  var totalText = "Veri mevcut değil";
+  if (c.total !== undefined && c.total !== null) {
+    totalText = String(c.total) + (c.unit ? " " + String(c.unit) : "");
   }
+
+  return (
+    "<h2>Sürdürülebilirlik</h2>" +
+    '<div class="row">' +
+      '<div class="box">' +
+        kv("Karbon Ayak İzi (Toplam)", totalText, "green") +
+        kv("Sorumlu Tedarik Raporu", c.responsibleSourcingReport || "Veri mevcut değil", "blue") +
+        kv("Geri Dönüştürülmüş İçerik Payı", c.recycledContentShare || "Veri mevcut değil", "amber") +
+        kv("Yenilenebilir İçerik Payı", c.renewableContentShare || "Veri mevcut değil", "green") +
+      "</div>" +
+    "</div>"
+  );
+}
 
   function renderMaterials(d) {
     const list = (d.materials || []).map((m) => {
