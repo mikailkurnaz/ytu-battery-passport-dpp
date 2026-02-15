@@ -177,8 +177,14 @@
       out.carbonFootprint.total = json.carbonFootprint.total ?? out.carbonFootprint.total;
       out.carbonFootprint.unit = json.carbonFootprint.unit ?? out.carbonFootprint.unit;
       out.carbonFootprint.reference = json.carbonFootprint.reference ?? out.carbonFootprint.reference;
-      out.carbonFootprint.note = json.carbonFootprint.note ?? out.carbonFootprint.note;
-      out.carbonFootprint.stages = json.carbonFootprint.stages ?? out.carbonFootprint.stages;
+       out.carbonFootprint.responsibleSourcingReport =
+    json.carbonFootprint.responsibleSourcingReport ?? out.carbonFootprint.responsibleSourcingReport;
+
+  out.carbonFootprint.recycledContentShare =
+    json.carbonFootprint.recycledContentShare ?? out.carbonFootprint.recycledContentShare;
+
+  out.carbonFootprint.renewableContentShare =
+    json.carbonFootprint.renewableContentShare ?? out.carbonFootprint.renewableContentShare;
     }
 
     // materials
