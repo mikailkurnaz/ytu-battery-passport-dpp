@@ -354,12 +354,9 @@
     const x = d.compliance;
     // İSTEDİĞİN: test/cert isimleri görünmesin -> sadece başlık + Uyumlu (Demo)
     const cards = [
-      ["EU Battery Regulation", "2023/1542", x.euBatteryRegulation],
-      ["ESPR", "Ecodesign Regulation", x.espr],
       ["RoHS", "", x.rohs],
       ["REACH", "", x.reach],
       ["CE", "", x.ce],
-      ["Test Raporu", "", x.testReport],
       ["Ürün Sertifikaları", "", x.productCertificates],
     ].map(([title, sub, val]) => {
       const cls = pillStatusClass(val);
