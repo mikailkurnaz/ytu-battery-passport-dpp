@@ -7,99 +7,70 @@
   },
   "battery": {
     "manufacturer": "Veri mevcut değil",
-    "category": "Çekiş bataryası (Traction Battery)",
+    "batteryType": "Çekiş bataryası (Traction Battery)",
     "model": "Veri mevcut değil",
+    "chemistry": "NMC 811 (80% Ni, 10% Mn, 10% Co)",
+    "manufactureDate": "2025",
+    "manufactureCountry": "Fransa",
+    "productionSiteAddress": "Veri mevcut değil",
     "capacity": "52 kWh",
-    "weight": "Veri mevcut değil",
-    "chemistry": {
-      "code": "NMC 811",
-      "label": "NMC 811 (80% Ni, 10% Mn, 10% Co)"
-    },
-    "manufacturing": {
-      "month": "Veri mevcut değil",
-      "year": "2025",
-      "country": "Fransa",
-      "address": "Veri mevcut değil"
-    }
+    "weight": "Veri mevcut değil"
   },
-  "materials": {
-    "criticalRawMaterials": "Veri mevcut değil",
-    "hazardousSubstances": "Veri mevcut değil",
-    "compositionList": [
-      { "name": "Nikel (Ni)", "percentage": 42, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-      { "name": "Mangan (Mn)", "percentage": 8, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-      { "name": "Kobalt (Co)", "percentage": 8, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-      { "name": "Lityum (Li)", "percentage": 7, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-      { "name": "Grafit", "percentage": 15, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-      { "name": "Alüminyum", "percentage": 12, "recyclable": true, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
-      { "name": "Diğer", "percentage": 8, "recyclable": false, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" }
-    ],
-    "detailedComposition": {
-      "cathode": "Veri mevcut değil",
-      "anode": "Veri mevcut değil",
-      "electrolyte": "Veri mevcut değil"
+  "carbonFootprint": {
+    "total": 77,
+    "unit": "kgCO₂e/kWh",
+    "reference": "Aulanier et al., 2023",
+    "stages": {
+      "rawMaterial": 35,
+      "manufacturing": 28,
+      "transport": 8,
+      "endOfLife": 6
     },
-    "partsInfo": {
-      "partNumbers": "Veri mevcut değil",
-      "sparePartsContact": "Veri mevcut değil"
-    }
+    "note": "Çekiş bataryası için literatür bazlı demo değer (prototip)."
   },
-  "sustainability": {
-    "carbonFootprint": {
-      "total": 77,
-      "unit": "kgCO2e/kWh",
-      "reference": "Aulanier et al., 2023",
-      "note": "Çekiş bataryası için literatür bazlı demo değer (prototip).",
-      "stages": {
-        "rawMaterial": 35,
-        "manufacturing": 28,
-        "transport": 8,
-        "endOfLife": 6
-      }
-    },
-    "dueDiligenceReport": "Veri mevcut değil",
-    "recycledContentShare": "Veri mevcut değil",
-    "renewableContentShare": "Veri mevcut değil"
-  },
+  "materials": [
+    { "name": "Nikel (Ni)", "percentage": 42, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
+    { "name": "Mangan (Mn)", "percentage": 8, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
+    { "name": "Kobalt (Co)", "percentage": 8, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
+    { "name": "Lityum (Li)", "percentage": 7, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
+    { "name": "Grafit", "percentage": 15, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
+    { "name": "Alüminyum", "percentage": 12, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
+    { "name": "Diğer", "percentage": 8, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" }
+  ],
   "performance": {
-    "nominalCapacity": "52 kWh",
-    "voltage": {
-      "min": "Veri mevcut değil",
-      "nom": "Veri mevcut değil",
-      "max": "Veri mevcut değil"
-    },
-    "powerCapacity": "Veri mevcut değil",
-    "temperatureRange": "Veri mevcut değil",
+    "energyDensity": "Veri mevcut değil",
+    "voltage": "Veri mevcut değil",
+    "power": "Veri mevcut değil",
+    "tempRange": "Veri mevcut değil",
     "cycleLife": "Veri mevcut değil",
-    "energyEfficiency": "Veri mevcut değil"
+    "efficiency": "Veri mevcut değil"
   },
   "circularity": {
     "repairability": "Veri mevcut değil",
     "recyclability": "Veri mevcut değil",
     "recycledContent": "Veri mevcut değil",
     "secondLife": "Veri mevcut değil",
-    "dismantlingInfo": "Veri mevcut değil",
-    "documents": {
-      "dismantlingInstructions": "Veri mevcut değil",
+    "docs": {
+      "dismantling": "Veri mevcut değil",
       "sds": "Veri mevcut değil"
-    },
-    "safety": "Veri mevcut değil"
+    }
   },
   "compliance": {
+    "euBatteryRegulation": "Uyumlu (Demo)",
+    "espr": "Uyumlu (Demo)",
     "rohs": "Uyumlu (Demo)",
     "reach": "Uyumlu (Demo)",
     "ce": "Uyumlu (Demo)",
-    "testReport": "Veri mevcut değil",
-    "productCertificates": "Veri mevcut değil"
+    "testReport": "Uyumlu (Demo)",
+    "productCertificates": "Uyumlu (Demo)"
   },
-  "legalAndWaste": {
-    "euDeclarationOfConformity": "Veri mevcut değil",
-    "wastePreventionAndManagement": "Veri mevcut değil"
-  },
-  "dynamicData": {
-    "performanceValues": "Veri mevcut değil",
+  "dynamic": {
+    "performanceRecords": "Veri mevcut değil",
     "soh": "Veri mevcut değil",
+    "soc": "Veri mevcut değil",
     "batteryStatus": "Veri mevcut değil",
-    "usageData": "Veri mevcut değil"
+    "usageData": "Veri mevcut değil",
+    "incidents": "Veri mevcut değil",
+    "temperatureExposure": "Veri mevcut değil"
   }
 }
