@@ -7,7 +7,7 @@
   },
   "battery": {
     "manufacturer": "Veri mevcut değil",
-    "batteryType": "Çekiş bataryası (Traction Battery)",
+    "batteryType": "Çekiş bataryası",
     "model": "Veri mevcut değil",
     "chemistry": "NMC 811 (80% Ni, 10% Mn, 10% Co)",
     "manufactureDate": "2025",
@@ -61,10 +61,10 @@
     }
   },
   "compliance": {
-    "rohs": " ",
-    "reach": " ",
-    "ce": " ",
-    "productCertificates": " "
+    "rohs": "Veri mevcut değil",
+    "reach": "Veri mevcut değil",
+    "ce": "Veri mevcut değil",
+    "productCertificates": "Veri mevcut değil"
   },
   "dynamic": {
     "performanceRecords": "Veri mevcut değil",
