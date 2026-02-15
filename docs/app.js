@@ -28,7 +28,7 @@
 
   const TABS = [
     { id: "overview", label: "Genel" , icon: "battery" },
-    { id: "carbon", label: "Karbon Ayak İzi", icon: "leaf" },
+    { id: "carbon", label: "Sürdürülebilirlik", icon: "leaf" },
     { id: "materials", label: "Malzeme", icon: "package" },
     { id: "performance", label: "Performans", icon: "zap" },
     { id: "circularity", label: "Döngüsel Ekonomi", icon: "recycle" },
