@@ -21,10 +21,13 @@
     "unit": "kgCO₂e/kWh",
     "reference": "Aulanier et al., 2023",
     "stages": {
-    "responsibleSourcingReport": "Veri mevcut değil",
-    "recycledContentShare": "Veri mevcut değil",
-    "renewableContentShare": "Veri mevcut değil"
-    },    
+      "rawMaterial": 35,
+      "manufacturing": 28,
+      "transport": 8,
+      "endOfLife": 6
+    },
+    "note": "Çekiş bataryası için literatür bazlı demo değer (prototip)."
+  },
   "materials": [
     { "name": "Nikel (Ni)", "percentage": 42, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
     { "name": "Mangan (Mn)", "percentage": 8, "source": "Veri mevcut değil", "recycledContent": "Veri mevcut değil" },
