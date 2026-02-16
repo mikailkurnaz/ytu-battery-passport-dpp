@@ -387,21 +387,12 @@
 
       '<div class="box">' +
         '<h3 style="display:flex;gap:8px;align-items:center;">' +
-          icon("file-text") + " Test Raporu Durumu" +
+          icon("file-text") + " Test Raporları" +
         "</h3>" +
         kv("Durum", available ? "Mevcut (Denetim için)" : "Veri mevcut değil", available ? "ok" : "warn") +
         kv("Son Güncelleme", t.lastUpdate || "Veri mevcut değil", "purple") +
         kv("Laboratuvar", t.lab || "Veri mevcut değil", "amber") +
-        '<div class="small" style="margin-top:10px;opacity:.85;">Test raporu isimleri bu demo ekranda gösterilmez.</div>' +
-      "</div>" +
-
-      '<div class="box">' +
-        '<h3 style="display:flex;gap:8px;align-items:center;">' +
-          icon("shield") + " Not" +
-        "</h3>" +
-        '<div class="small" style="line-height:1.8;">' +
-          "Bu sekme sadece Denetim Otoritesi için görünür." +
-        "</div>" +
+        '<div class="small" style="margin-top:10px;opacity:.85;"> Tüzük gerekliliklerine ve ilgili standartlara uygunluğu kanıtlayan test sonuçları.</div>' +
       "</div>" +
 
     "</div>"
