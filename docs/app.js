@@ -377,50 +377,26 @@
       <div class="grid3">${cards}</div>
     `;
   }
-  function renderTestReports(d) {
-  // Sadece Denetim Otoritesi görsün (sekme görünürlüğünü zaten allowTabIds ile kontrol ediyoruz)
+ function renderTestReports(d) {
   var tr = (d && d.testReports) ? d.testReports : {};
 
-  function line(label, value) {
-    return (
-      '<div class="kv" style="display:flex;justify-content:space-between;gap:16px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">' +
-      '<div class="k" style="opacity:.9;font-weight:700">' + esc(label) + '</div>' +
-      '<div class="v" style="opacity:.95;font-weight:700">' + esc(value || "Veri mevcut değil") + "</div>" +
-      "</div>"
-    );
-  }
-
   return (
-    "<h2>Test Raporları</h2>" +
+    "<h2>Test Raporu</h2>" +
     '<div class="row">' +
-
-      // SOL KART
       '<div class="box">' +
         '<h3 style="display:flex;gap:8px;align-items:center;">' +
           icon("file-text") +
-          "Test Raporları</h3>" +
+          " Test Raporları" +
+        "</h3>" +
 
-        '<div style="display:grid;gap:10px;margin-top:10px;">' +
-          line("UN 38.3", tr.un38_3 || "Veri mevcut değil") +
-          line("UNECE R100", tr.uneceR100 || "Veri mevcut değil") +
-          line("EMC (UNECE R10)", tr.emcUneceR10 || "Veri mevcut değil") +
+        '<div class="small" style="opacity:.8;margin:8px 0 14px;line-height:1.6;">' +
+          "Tüzük gerekliliklerine ve ilgili standartlara uygunluğu kanıtlayan test sonuçları.." +
         "</div>" +
 
-        '<div class="small" style="margin-top:10px;opacity:.75;">' +
-          "Rapor detayları bu demo ekranda gösterilmez." +
-        "</div>" +
+        kv("UN 38.3", tr.un38_3 || "Veri mevcut değil", "blue") +
+        kv("UNECE R100", tr.uneceR100 || "Veri mevcut değil", "blue") +
+        kv("EMC (UNECE R10)", tr.emcUneceR10 || "Veri mevcut değil", "blue") +
       "</div>" +
-
-      // SAĞ KART (Not KISMI KALDIRILDI)
-      '<div class="box">' +
-        '<h3 style="display:flex;gap:8px;align-items:center;">' +
-          icon("shield") +
-          "Görünürlük</h3>" +
-        '<div class="small" style="line-height:1.7;opacity:.85;margin-top:10px;">' +
-          "Bu sekme yalnızca <b>Denetim Otoritesi</b> modu için tasarlanmıştır." +
-        "</div>" +
-      "</div>" +
-
     "</div>"
   );
 }
