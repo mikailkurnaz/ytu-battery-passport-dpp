@@ -1,6 +1,6 @@
 {
   "passport": {
-    "id": "NMC-BAT-2025-FR-8105",
+    "id": "NMC-BAT-2026-FR-8105",
     "version": "v1.0",
     "status": "prototype",
     "lastUpdate": "Veri mevcut değil"
@@ -21,7 +21,7 @@
       }
     },
     "manufacturing": {
-      "year": "2025",
+      "year": "2026",
       "month": "01",
       "country": "Fransa",
       "address": "Veri mevcut değil"
