@@ -46,13 +46,13 @@
 
   // --- DEFAULT (JSON okunamazsa bile ekranda bir şey görünsün) ---
   const DEFAULT = {
-    passport: { id: "NMC-BAT-2025-FR-8105", version: "v1.0", status: "prototype", lastUpdate: "Veri mevcut değil" },
+    passport: { id: "NMC-BAT-2026-FR-8105", version: "v1.0", status: "prototype", lastUpdate: "Veri mevcut değil" },
     battery: {
       manufacturer: "Veri mevcut değil",
       batteryType: "Çekiş bataryası (Traction Battery)",
       model: "Veri mevcut değil",
       chemistry: "NMC 811 (80% Ni, 10% Mn, 10% Co)",
-      manufactureDate: "2025",
+      manufactureDate: "2026",
       manufactureCountry: "Fransa",
       productionSiteAddress: "Veri mevcut değil",
       capacity: "52 kWh",
